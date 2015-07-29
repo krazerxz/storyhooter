@@ -1,0 +1,19 @@
+AllCops:
+  RunRailsCops: true
+  Exclude:
+   - 'bin/*'
+
+Metrics/LineLength:
+  Max: 150
+  AllowURI: true
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/PredicateName:
+  NamePrefixBlacklist:
+    - get_
+    - set_
