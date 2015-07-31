@@ -2,12 +2,14 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe '#validations' do
-    xit 'validates uniqueness of uuid' do
-
+    xit 'does not save a user if one already exists with the same uuid' do
+      User.create(uuid: '1')
+      User.create(uuid: '1')
+      expect(User.all.count).to be 1
     end
   end
-  describe '#save' do
 
+  describe '#save' do
     it 'creates an random hex' do
       expect(SecureRandom).to receive(:hex).with(5)
       User.create
