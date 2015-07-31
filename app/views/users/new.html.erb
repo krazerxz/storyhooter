@@ -1,5 +1,5 @@
 <div class="previous">
-  <div id="referred-from">You heard from <%=@referral_user%></div>
+  <div id="referred-from">You heard from <%=@referral_user.name%></div>
   <div id="story-so-far">
     <%=@story_so_far%>
   </div>
@@ -9,7 +9,7 @@
 
   <p>
     <%= field.label 'Nickname' %><br>
-    <%= field.text_field :nickname %>
+    <%= field.text_field :name %>
   </p>
 
   <p>
@@ -23,6 +23,7 @@
   </p>
 
   <p>
+    <%= field.hidden_field 'referrer_uuid', :value => @referral_user.uuid %>
     <%= field.submit %>
   </p>
 <% end %>
