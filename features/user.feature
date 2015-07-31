@@ -1,9 +1,10 @@
 Feature: User
 
-  Scenario: Editing an uncompleted user page
-    Given there is an uncompleted user in the database
-    When I visit the user edit page
-    And I fill in details for the user
+  Scenario: New user joins the chain
+    Given there is an existing completed user
+    When I visit the new user page with the existing user uuid
+    Then I should see the new user page
+    When I fill in details for the new user
     Then I see the user show page
 
     @wip
