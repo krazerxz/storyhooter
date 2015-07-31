@@ -3,8 +3,7 @@ require 'securerandom'
 class User < ActiveRecord::Base
   validates :uuid, uniqueness: true
 
-  def save
+  before_save do |_user|
     self.uuid = SecureRandom.hex(5)
-    super
   end
 end
