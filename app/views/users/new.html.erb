@@ -1,0 +1,28 @@
+<div class="previous">
+  <div id="referred-from">You heard from <%=@referral_user%></div>
+  <div id="story-so-far">
+    <%=@story_so_far%>
+  </div>
+</div>
+
+<%= form_for :user do |field| %>
+
+  <p>
+    <%= field.label 'Nickname' %><br>
+    <%= field.text_field :nickname %>
+  </p>
+
+  <p>
+    <%= field.label 'Country' %><br>
+    <%= field.collection_select :country_id, Country.all,:id,:name %>
+  </p>
+
+  <p>
+    <%= field.label 'Add to the tale' %><br>
+    <%= field.text_field :tale %>
+  </p>
+
+  <p>
+    <%= field.submit %>
+  </p>
+<% end %>
