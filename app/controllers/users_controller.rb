@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   # Get given a uuid when creating a user
   def new
-    referral_user = User.find_by(uuid: referred_from)
-    @referral_user = referral_user
-    @story_so_far = Story.build_from(uuid: referral_user.uuid)
+    parent_user = User.find_by(uuid: referral_uuid)
+    story_so_far = Story.build_from(uuid: referral_uuid)
+    @user_display = UserDisplay.new(parent: parent_user, story: story_so_far)
   end
 
   def create
@@ -11,32 +11,32 @@ class UsersController < ApplicationController
     referrer_uuid = user_hash.delete(:referrer_uuid)
     referrer_id = User.find_by(uuid: referrer_uuid).id
     @user = User.new(user_hash.merge(referrer_id: referrer_id))
-    @user.save
-    redirect_to @user
+    redirect_to @user if @user.save
+    render :new
   end
 
   # Get given id of newly created user
   def show
-    @user = User.find(user_id)
-    @user_count = User.all.count
-    @story_so_far = Story.build_from(uuid: @user.uuid)
+    user = User.find(user_id)
+    parent_user = User.find(user.referrer_id)
+    story_so_far = Story.build_from(uuid: user.uuid)
+    @user_display = UserDisplay.new(parent: parent_user, story: story_so_far)
   end
 
   private
 
+  # for create
   def user_params
     params.require(:user).permit(:name, :country_id, :tale, :referrer_uuid)
   end
 
+  # for show
   def user_id
     params[:id]
   end
 
-  def uuid
-    params[:uuid]
-  end
-
-  def referred_from
+  # for new, create
+  def referral_uuid
     params[:referred_from]
   end
 end
