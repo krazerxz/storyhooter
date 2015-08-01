@@ -1,33 +1,44 @@
-<div class="title">
-  <h1>WordOfMouth</h1>
-</div>
-<div class="previous">
-  <div id="referred-from">You heard from <%=@user_display.referrer_name%></div>
-  <div id="story-so-far">
-    <%=@user_display.story%>
+
+<header>
+  <div class="container">
+    <div class="intro-text">
+      <div class="intro-heading">add to the tale</div>
+      <div class="intro-lead-in">Word Of Mouth</div>
+      <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a>
+    </div>
   </div>
+</header>
+
+<div class="container" id="content">
+
+  <div class="previous">
+    <div id="referred-from">You heard from <%=@user_display.referrer_name%></div>
+    <div id="story-so-far">
+      <%=@user_display.story%>
+    </div>
+  </div>
+
+  <%= form_for :user do |field| %>
+
+    <p>
+      <%= field.label 'Add to the tale' %><br>
+      <%= field.text_field :tale %>
+    </p>
+
+    <p>
+      <%= field.label 'Nickname' %><br>
+      <%= field.text_field :name %>
+    </p>
+
+    <p>
+      <%= field.label 'Country' %><br>
+      <%= field.collection_select :country_id, Country.all,:id,:name %>
+    </p>
+
+
+    <p>
+      <%= field.hidden_field 'referrer_uuid', :value => @user_display.referrer_uuid %>
+      <%= field.submit %>
+    </p>
+  <% end %>
 </div>
-
-<%= form_for :user do |field| %>
-
-  <p>
-    <%= field.label 'Add to the tale' %><br>
-    <%= field.text_field :tale %>
-  </p>
-
-  <p>
-    <%= field.label 'Nickname' %><br>
-    <%= field.text_field :name %>
-  </p>
-
-  <p>
-    <%= field.label 'Country' %><br>
-    <%= field.collection_select :country_id, Country.all,:id,:name %>
-  </p>
-
-
-  <p>
-    <%= field.hidden_field 'referrer_uuid', :value => @user_display.referrer_uuid %>
-    <%= field.submit %>
-  </p>
-<% end %>

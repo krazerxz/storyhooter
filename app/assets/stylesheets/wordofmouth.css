@@ -1,0 +1,17 @@
+header{
+  background-image: url("/assets/header-bg.jpg");
+  background-repeat:none;
+  background-attachment:scroll;
+  background-position:center center;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  background-size:cover;
+  -o-background-size:cover;
+  text-align:center;
+  color:#fff}
+header .intro-text{padding-top:100px;padding-bottom:50px}
+header .intro-text .intro-lead-in{font-family:"Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;font-style:italic;font-size:22px;line-height:22px;margin-bottom:25px}
+
+@media (min-width:768px){
+  header .intro-text{padding-top:300px;padding-bottom:200px}
+  header .intro-text .intro-lead-in{font-family:"Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;font-style:italic;font-size:40px;line-height:40px;margin-bottom:25px}
