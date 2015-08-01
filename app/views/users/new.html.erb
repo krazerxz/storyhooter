@@ -23,7 +23,7 @@
   </p>
 
   <p>
-    <%= field.hidden_field 'referrer_uuid', :value => @referral_user.uuid %>
+    <%= field.hidden_field 'referrer_uuid', :value => @user_display.referrer_uuid %>
     <%= field.submit %>
   </p>
 <% end %>
