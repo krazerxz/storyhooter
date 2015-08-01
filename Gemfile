@@ -1,15 +1,16 @@
 source 'https://rubygems.org'
 
-gem 'coffee-rails', '~> 4.1.0'
+gem 'bootstrap_form'
+gem 'coffee-rails'
 gem 'hashie'
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'
 gem 'jquery-rails'
 gem 'pg'
-gem 'rails', '4.2.1'
-gem 'sass-rails', '~> 5.0'
+gem 'rails'
+gem 'sass-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'twitter-bootstrap-rails'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 
 group :development, :test do
   gem 'byebug'

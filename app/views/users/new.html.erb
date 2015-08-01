@@ -18,20 +18,17 @@
     </div>
   </div>
 
-  <%= form_for :user do |field| %>
+  <%= bootstrap_form_for :user do |field| %>
 
     <p>
-      <%= field.label 'Add to the tale' %><br>
       <%= field.text_field :tale %>
     </p>
 
     <p>
-      <%= field.label 'Nickname' %><br>
       <%= field.text_field :name %>
     </p>
 
     <p>
-      <%= field.label 'Country' %><br>
       <%= field.collection_select :country_id, Country.all,:id,:name %>
     </p>
 
