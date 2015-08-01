@@ -1,3 +1,6 @@
+<div class="title">
+  <h1>WordOfMouth</h1>
+</div>
 <div class="previous">
   <div id="referred-from">You heard from <%=@user_display.referrer_name%></div>
   <div id="story-so-far">
@@ -6,6 +9,11 @@
 </div>
 
 <%= form_for :user do |field| %>
+
+  <p>
+    <%= field.label 'Add to the tale' %><br>
+    <%= field.text_field :tale %>
+  </p>
 
   <p>
     <%= field.label 'Nickname' %><br>
@@ -17,10 +25,6 @@
     <%= field.collection_select :country_id, Country.all,:id,:name %>
   </p>
 
-  <p>
-    <%= field.label 'Add to the tale' %><br>
-    <%= field.text_field :tale %>
-  </p>
 
   <p>
     <%= field.hidden_field 'referrer_uuid', :value => @user_display.referrer_uuid %>
