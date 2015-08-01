@@ -7,6 +7,6 @@ class Story
       current_user = User.find_by(id: current_user.referrer_id)
     end
     story << current_user.tale
-    story.reverse.join("\n")
+    story.reverse
   end
 end

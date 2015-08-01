@@ -2,11 +2,16 @@
   <div id="user-count">
     <p><%=@user.id%></p>
   </div>
+
   <div id="story-so-far">
-    <%=@user_display.story%>
+    <%@user_display.story.each do |element|%>
+      <p><%=element%></p>
+    <% end %>
   </div>
+
   <div id="referral-link">
     <p>Your referral link is <a href="<%=@user.referral_url%>"><%=@user.referral_url%></a></p>
   </div>
+
 </div>
 

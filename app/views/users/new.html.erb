@@ -10,11 +10,15 @@
 </header>
 
 <div class="container" id="content">
+  <div class="col-md-12">
+    <div class="previous">
+      <div id="referred-from">You heard from <%=@user_display.referrer_name%></div>
 
-  <div class="previous">
-    <div id="referred-from">You heard from <%=@user_display.referrer_name%></div>
-    <div id="story-so-far">
-      <%=@user_display.story%>
+      <div id="story-so-far">
+        <%@user_display.story.each do |element|%>
+          <p><%=element%></p>
+        <% end %>
+      </div>
     </div>
   </div>
 
