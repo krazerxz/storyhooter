@@ -1,13 +1,12 @@
 <div>
   <div id="user-count">
-    <p>You are user <%=@user_count%>
+    <p>You are user <%=@user_display.username%>
   </div>
   <div id="story-so-far">
-    <%=@story_so_far%>
+    <%=@user_display.story%>
   </div>
   <div id="referral-link">
-    <p>Your referral link is <a href="http://127.0.0.1/user/new?referred_from=<%=@user.uuid%>">http://127.0.0.1/user/new?referred_from=<%=@user.uuid%></a></p>
-
+    <p>Your referral link is <a href="<%=@user_display.referral_url%>"><%=@user_display.referral_url%></a></p>
   </div>
 </div>
 
