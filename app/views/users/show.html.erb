@@ -1,7 +1,7 @@
 <div class="container" id="content">
   <div>
     <div class="previous">
-      <p><%=@user.name%>, this is where your story begins. You are the <%=@user.id.ordinalize%> person to contribute. Bookmark this page so you don't loose it.</p>
+      <p><%=@user.name%>, this is where your story begins. You are the <%=@user.id%> person to contribute. Bookmark this page so you don't loose it.</p>
     </div>
 
     <div id="story-so-far">
@@ -10,11 +10,11 @@
       <% end %>
     </div>
 
-    <div id="story-evolution">
-      <%@user_display.future_story.each do |element|%>
-        <p><%=element%></p>
-      <% end %>
-    </div>
+    <%#<div id="story-evolution">%>
+      <%#<%@user_display.future_story.each do |element|%>%>
+        <%#<p><%=element%></p>%>
+      <%#<% end %>%>
+    <%#</div>%>
 
     <div class="shares">
       <p>To continue your unique story, share <a id="referral-url" href="<%=@user.referral_url%>">this link</a> and watch your story unfold. </p>

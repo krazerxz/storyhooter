@@ -1,6 +1,5 @@
 Feature: User
 
-    @wip
   Scenario: New user joins the chain
     Given there is an existing completed user
     When I visit the new user page with the existing user uuid

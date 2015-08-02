@@ -6,12 +6,12 @@ class UserDisplay
     @story = story
   end
 
-  def referrer_name
+  def parent_name
     @parent.name
   end
 
-  def referrer_uuid
-    @parent.uuid
+  def parent_uuid
+    @parent.user_uuid
   end
 
   def total_users

@@ -36,7 +36,7 @@ class User
   end
 
   before_save do
-    self.user_uuid = SecureRandom.hex(5)
+    self.user_uuid = SecureRandom.hex(5) if user_uuid.nil?
   end
 
   def referral_url

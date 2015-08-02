@@ -1,18 +1,18 @@
 require 'rails_helper'
 
 describe UserDisplay do
-  let(:parent_user)  { double(:parent_user, name: 'parent_username', uuid: 'parent_uuid') }
+  let(:parent_user)  { double(:parent_user, name: 'parent_username', user_uuid: 'parent_uuid') }
   let(:user_display) { UserDisplay.new(parent: parent_user, story: 'a long story') }
 
-  describe 'referrer_name' do
+  describe 'parent_name' do
     it 'returns the users referral name' do
-      expect(user_display.referrer_name).to match(/parent_username/)
+      expect(user_display.parent_name).to match(/parent_username/)
     end
   end
 
-  describe 'referrer_uuid' do
+  describe 'parent_uuid' do
     it 'returns the users uuid' do
-      expect(user_display.referrer_uuid).to match(/parent_uuid/)
+      expect(user_display.parent_uuid).to match(/parent_uuid/)
     end
   end
 
