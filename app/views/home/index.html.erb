@@ -1,7 +1,45 @@
-<h1>WordOfMouth</h1>
+<div class="container" id="content">
+  <h1>WordOfMouth</h1>
 
-<div class="stats">
-  <div id="users">
-    <p>There are <%=@users.count%> users.</p>
+  <div class="stats">
+    <div id="users">
+      <p>There are <%=@users.count%> users.</p>
+    </div>
   </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <a class="panel-title collapsed" data-toggle="collapse" href="#panel-element-1">What is WordOfMouth</a>
+    </div>
+    <div id="panel-element-1" class="panel-collapse">
+      <div class="panel-body">
+        WordOfMouth is a real-time user generated branching story inspired by games like <a href="https://en.wikipedia.org/wiki/Consequences_(game)">Consequences</a> and <a href="https://en.wikipedia.org/wiki/Mad_Libs">Mad Libs</a>.
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <a class="panel-title collapsed" data-toggle="collapse" href="#panel-element-2">How does it work?</a>
+    </div>
+    <div id="panel-element-2" class="panel-collapse collapse">
+      <div class="panel-body">
+        The story begins from a single line, ‘Once upon a time’. As people hear about it they can add to the story. Who you share your referral link with determines how the story continues.
+        Because any number of people can add to the story at any given point the narrative quickly branches into an infinite number of endings.
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <a class="panel-title collapsed" data-toggle="collapse" href="#panel-element-3">How do I add to the story</a>
+    </div>
+    <div id="panel-element-3" class="panel-collapse collapse">
+      <div class="panel-body">
+        You need to hear about it from someone!
+        If someone sends you their referral link, you’ll be able to continue the story from where they left it.
+      </div>
+    </div>
+  </div>
+
 </div>

@@ -45,3 +45,10 @@ input, .header-button{
   color: #fff;
   border-color: #fff;
 }
+div .panel {
+  border-color: #01BFBA;
+}
+.panel .panel-heading{
+  background-color: #EBFAF9;
+  border-color: #01BFBA;
+}
