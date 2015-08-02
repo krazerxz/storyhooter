@@ -1,9 +1,10 @@
 require 'cucumber/rails'
 ActionController::Base.allow_rescue = false
 
-begin
-  DatabaseCleaner.strategy = :transaction
-rescue NameError
-  raise 'You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it.'
+After do
+  delete_neo4j_db
 end
-Cucumber::Rails::Database.javascript_strategy = :truncation
+
+def delete_neo4j_db
+  Neo4j::Session.current._query('MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r')
+end
