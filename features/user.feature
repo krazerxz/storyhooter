@@ -1,5 +1,6 @@
 Feature: User
 
+    @wip
   Scenario: New user joins the chain
     Given there is an existing completed user
     When I visit the new user page with the existing user uuid
@@ -7,6 +8,7 @@ Feature: User
     When I fill in details for the new user
     Then I see the user show page
 
+    @wip
   Scenario: Viewing how the story has evolved past the current user
     Given there is an existing story
     When I visit a user in the middle of the chain

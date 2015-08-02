@@ -31,11 +31,11 @@ class User
     refer_to << user unless refer_to.include? user
   end
 
-  #before_save do |_user|
-  #self.uuid = SecureRandom.hex(5)
-  #end
+  before_save do
+    self.user_uuid = SecureRandom.hex(5)
+  end
 
   def referral_url
-    "/user/new?referred_from=#{uuid}"
+    "/user/new?referred_from=#{user_uuid}"
   end
 end
