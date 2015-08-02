@@ -1,9 +1,9 @@
 require File.expand_path('../boot', __FILE__)
 
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "sprockets/railtie"
-require "rails/test_unit/railtie"
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+require 'sprockets/railtie'
+require 'rails/test_unit/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -23,7 +23,7 @@ module WordOfMouth
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-     neo4j_dbconfig = YAML.load(File.open("#{File.dirname(__FILE__)}/neo4j_database.yml"))[ENV['RAILS_ENV']]
-     Neo4j::Session.open(:server_db, neo4j_dbconfig['database_url'])
+    neo4j_dbconfig = YAML.load(File.open("#{File.dirname(__FILE__)}/neo4j_database.yml"))[ENV['RAILS_ENV']]
+    Neo4j::Session.open(:server_db, neo4j_dbconfig['database_url'])
   end
 end

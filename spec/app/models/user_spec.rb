@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  xdescribe 'add_parent' do
+  end
+
   describe 'referral_url' do
     it 'returns the users unique referral url' do
       allow(SecureRandom).to receive(:hex).with(5).and_return('a_hex')

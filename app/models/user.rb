@@ -3,20 +3,20 @@ require 'securerandom'
 class User
   include Neo4j::ActiveNode
 
-  class ReferFrom
+  class Parent
     include Neo4j::ActiveRel
 
     from_class User
     to_class User
-    type 'referred_from'
+    type 'parent'
   end
 
-  class ReferTo
+  class Child
     include Neo4j::ActiveRel
 
     from_class User
     to_class User
-    type 'referred_to'
+    type 'child'
   end
 
   property :name
@@ -24,11 +24,15 @@ class User
   property :user_uuid
   property :tale
 
-  has_many :out, :refer_to, rel_class: ReferTo,  model_class: User
-  has_many :in, :refer_from, rel_class: ReferFrom,  model_class: User
+  has_one :out, :parent, rel_class: Parent,  model_class: User
+  has_many :out, :children, rel_class: Child,  model_class: User
 
-  def add_refer_to(user)
-    refer_to << user unless refer_to.include? user
+  def add_child(user)
+    children << user
+  end
+
+  def add_parent(user)
+    self.parent = user
   end
 
   before_save do
