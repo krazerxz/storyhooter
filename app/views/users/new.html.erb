@@ -16,12 +16,12 @@
 
     <div class="col-md-12">
       <p>
-        <%= field.text_field :tale %>
+        <%= field.text_field(:tale, required: true) %>
       </p>
     </div>
 
     <div class="col-md-6">
-      <p> <%= field.text_field(:name, wrapper:{layout: :inline}) %> </p>
+      <p> <%= field.text_field(:name, required: true) %> </p>
     </div>
     <div class="col-md-6">
       <p> <%= field.collection_select :country_id, Country.all,:id,:name %> </p>
