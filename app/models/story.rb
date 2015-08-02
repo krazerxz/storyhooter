@@ -21,10 +21,10 @@ class Story
     story
   end
 
-  private
-
-  def self.children_for user
+  def self.children_for(user)
     user.children.execute
     user.children
   end
+
+  private_class_method :children_for
 end

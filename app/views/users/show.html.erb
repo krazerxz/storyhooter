@@ -10,17 +10,20 @@
       <% end %>
     </div>
 
-    <div id="story-evolution">
-      <%@user_display.future_story.each do |element|%>
-        <p><%=element%></p>
-      <% end %>
-    </div>
 
     <div class="shares">
       <p>To continue your unique story, share <a id="referral-url" href="<%=@user.referral_url%>">this link</a> and watch your story unfold. </p>
       <div class="fb-share-button" data-href="<%=@user.referral_url%>" data-layout="button"></div>
       <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://wordofmouth.com/<%=@user.referral_url%>" data-count="none" data-dnt="true">Tweet</a>
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </div>
+
+    <p>See how your story has evolved</p>
+
+    <div id="story-evolution">
+      <%@user_display.future_story.each do |element|%>
+        <p><%=element%></p>
+      <% end %>
     </div>
   </div>
 </div>

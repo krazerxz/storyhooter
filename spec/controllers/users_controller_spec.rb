@@ -7,7 +7,7 @@ describe UsersController, type: :controller do
 
     before do
       allow(User).to receive(:find_by).with(user_uuid: 'a_hex_code').and_return(parent_user)
-      allow(Story).to receive(:build_from).with(user_uuid: 'a_hex_code').and_return(story)
+      allow(Story).to receive(:build_to_top_from).with(user_uuid: 'a_hex_code').and_return(story)
       allow(UserDisplay).to receive(:new).and_return('user_display')
     end
 
@@ -17,7 +17,7 @@ describe UsersController, type: :controller do
     end
 
     it 'builds the story from the referring user' do
-      expect(Story).to receive(:build_from).with(user_uuid: 'a_hex_code')
+      expect(Story).to receive(:build_to_top_from).with(user_uuid: 'a_hex_code')
       get :new, referred_from: 'a_hex_code'
     end
 
@@ -75,7 +75,8 @@ describe UsersController, type: :controller do
 
     before do
       allow(User).to receive(:find_by).with(user_uuid: 'uuid').and_return(current_user)
-      allow(Story).to receive(:build_from).and_return('story')
+      allow(Story).to receive(:build_to_top_from).and_return('story up')
+      allow(Story).to receive(:build_down_from).and_return('story down')
     end
 
     it 'finds the user to show' do
@@ -83,13 +84,18 @@ describe UsersController, type: :controller do
       get :show, user_uuid: 'uuid'
     end
 
-    it 'builds the story' do
-      expect(Story).to receive(:build_from).with(user_uuid: 'uuid')
+    it 'builds the story to the top' do
+      expect(Story).to receive(:build_to_top_from).with(user_uuid: 'uuid')
+      get :show, user_uuid: 'uuid'
+    end
+
+    it 'builds the story from the user' do
+      expect(Story).to receive(:build_down_from).with(user_uuid: 'uuid')
       get :show, user_uuid: 'uuid'
     end
 
     it 'creates a user display' do
-      expect(UserDisplay).to receive(:new).with(parent: parent_user, story: 'story')
+      expect(UserDisplay).to receive(:new).with(parent: parent_user, story: 'story up', future_story: 'story down')
       get :show, user_uuid: 'uuid'
     end
   end
