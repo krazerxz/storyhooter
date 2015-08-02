@@ -21,10 +21,22 @@ div .previous {
 }
 div #story-so-far{
   text-align: center;
-  border: solid #01BFBA 3px;
+  border: solid #01BFBA 1px;
   overflow: scroll;
   height: 200px;
+  border-radius: 5px;
 }
 footer {
   padding-top: 50px;
+}
+input, .btn, .form-control{
+  background-color: transparent;
+  border-color: #01BFBA;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+input, .header-button{
+  color: #fff;
+  border-color: #fff;
 }
