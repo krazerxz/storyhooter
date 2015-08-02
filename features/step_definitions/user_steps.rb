@@ -21,8 +21,7 @@ end
 
 Then 'I see the user show page' do
   uuid = User.find_by(name: 'username').uuid
-  # expect(find('#user-count').text).to match(/2/)
   expect(find('#story-so-far').text).to match(/Once upon a time/)
   expect(find('#story-so-far').text).to match(/The End/)
-  expect(find('#referral-link').text).to match(%r{/user/new\?referred_from=#{uuid}})
+  expect(find('#referral-url')[:href]).to match(%r{/user/new\?referred_from=#{uuid}})
 end
