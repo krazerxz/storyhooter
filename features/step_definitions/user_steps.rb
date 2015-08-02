@@ -5,9 +5,21 @@ end
 Given 'there is an existing story' do
   user_1 = User.create!(name: 'user_1', tale: 'Part 1')
   user_2 = User.create!(name: 'user_2', tale: 'Part 2')
-  User.create!(name: 'user_3', tale: 'Part 3')
+  user_3 = User.create!(name: 'user_3', tale: 'Part 3')
+  user_4 = User.create!(name: 'user_4', tale: 'Alternate Part 3')
+  user_5 = User.create!(name: 'user_5', tale: 'I should not see this')
+
+  # Add Parents
   user_2.add_parent user_1
   user_3.add_parent user_2
+  user_4.add_parent user_2
+  user_5.add_parent user_1
+
+  # Add Children
+  user_1.add_child user_2
+  user_2.add_child user_3
+  user_2.add_child user_4
+  user_1.add_child user_5
 end
 
 When 'I visit the new user page with the existing user uuid' do

@@ -10,11 +10,11 @@
       <% end %>
     </div>
 
-    <%#<div id="story-evolution">%>
-      <%#<%@user_display.future_story.each do |element|%>%>
-        <%#<p><%=element%></p>%>
-      <%#<% end %>%>
-    <%#</div>%>
+    <div id="story-evolution">
+      <%@user_display.future_story.each do |element|%>
+        <p><%=element%></p>
+      <% end %>
+    </div>
 
     <div class="shares">
       <p>To continue your unique story, share <a id="referral-url" href="<%=@user.referral_url%>">this link</a> and watch your story unfold. </p>
