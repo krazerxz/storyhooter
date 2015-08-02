@@ -19,7 +19,7 @@ header .intro-text .intro-lead-in{font-family:"Droid Serif","Helvetica Neue",Hel
 div .previous, .shares {
   padding-top: 20px;
 }
-div #story-so-far{
+div #story-so-far, #story-evolution{
   text-align: center;
   border: solid #01BFBA 1px;
   overflow: scroll;

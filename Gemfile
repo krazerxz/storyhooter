@@ -5,7 +5,7 @@ gem 'coffee-rails'
 gem 'hashie'
 gem 'jbuilder'
 gem 'jquery-rails'
-gem 'pg'
+gem 'neo4j'
 gem 'rails'
 gem 'sass-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
@@ -15,7 +15,6 @@ gem 'uglifier'
 group :development, :test do
   gem 'byebug'
   gem 'cucumber-rails', require: false
-  gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'spring'
