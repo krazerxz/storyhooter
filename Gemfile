@@ -5,7 +5,7 @@ gem 'coffee-rails'
 gem 'hashie'
 gem 'jbuilder'
 gem 'jquery-rails'
-gem 'pg'
+gem 'neo4j'
 gem 'rails'
 gem 'sass-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
