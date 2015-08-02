@@ -11,10 +11,28 @@
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
   </head>
   <body>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.4&appId=476013819243777";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
-    <%= yield %>
+  <header>
+    <div class="container">
+      <div class="intro-text">
+        <div class="intro-heading">add to the tale</div>
+        <div class="intro-lead-in">Word Of Mouth</div>
+        <a href="#about" class="btn btn-default header-button">What is this?</a>
+      </div>
+    </div>
+  </header>
 
-    <footer class="footer"></footer>
+  <%= yield %>
 
-  </body>
+  <footer class="footer"></footer>
+
+</body>
 </html>

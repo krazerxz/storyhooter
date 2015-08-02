@@ -1,17 +1,19 @@
-<div>
-  <div id="user-count">
-    <p><%=@user.id%></p>
-  </div>
+<div class="container" id="content">
+  <div>
+    <div class="previous">
+      <p><%=@user.name%>, this is where your story begins. You are the <%=@user.id.ordinalize%> person to contribute. Bookmark this page so you don't loose it.</p>
+      <p>To continue your unique story, share <a href="<%=@user.referral_url%>">this link</a> and watch your story unfold. </p>
+      <div class="fb-share-button" data-href="<%=@user.referral_url%>" data-layout="button"></div>
+    </div>
+    <div id="user-count">
+      <p></p>
+    </div>
 
-  <div id="story-so-far">
-    <%@user_display.story.each do |element|%>
-      <p><%=element%></p>
-    <% end %>
-  </div>
+    <div id="story-so-far">
+      <%@user_display.story.each do |element|%>
+        <p><%=element%></p>
+      <% end %>
+    </div>
 
-  <div id="referral-link">
-    <p>Your referral link is <a href="<%=@user.referral_url%>"><%=@user.referral_url%></a></p>
   </div>
-
 </div>
-
