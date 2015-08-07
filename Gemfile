@@ -9,6 +9,7 @@ gem 'neo4j'
 gem 'rails'
 gem 'sass-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
 gem 'uglifier'
 
