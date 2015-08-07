@@ -3,3 +3,6 @@ test:
 
 development:
   database_url: 'http://localhost:7000'
+
+production:
+  database_url: 'http://localhost:6000'
