@@ -26,12 +26,12 @@ describe UsersController, type: :controller do
       get :new, referred_from: 'a_hex_code'
     end
 
-    xit 'handles when an invalid referral code is given' do
-      get '/user/new?referred_from=an_invalid_hex'
+    it 'throws an error if an invalid user is entered' do
+      get :new, referred_from: 'an_invalid_hex'
     end
 
-    xit 'handles when no referral code is given' do
-      get '/user/new'
+    it 'throws an error if no user is entered' do
+      get :new
     end
   end
 
@@ -97,6 +97,14 @@ describe UsersController, type: :controller do
     it 'creates a user display' do
       expect(UserDisplay).to receive(:new).with(parent: parent_user, story: 'story up', future_story: 'story down')
       get :show, user_uuid: 'uuid'
+    end
+
+    it 'throws an error if an invalid user is entered' do
+      get :new, user_uuid: 'an_invalid_hex'
+    end
+
+    it 'throws an error if no user is entered' do
+      get :new
     end
   end
 end
