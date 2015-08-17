@@ -1,7 +1,25 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  xdescribe 'add_parent' do
+  describe 'add_child' do
+    let(:user_1) { User.create }
+    let(:user_2) { User.new }
+
+    it 'adds a child user' do
+      user_1.add_child user_2
+      expect(user_1.children.count).to be 1
+      expect(user_1.children.first.user_uuid).to eq user_2.user_uuid
+    end
+  end
+
+  describe 'add_parent' do
+    let(:user_1) { User.create }
+    let(:user_2) { User.new }
+
+    it 'adds a parent user' do
+      user_1.add_parent user_2
+      expect(user_1.parent.user_uuid).to eq user_2.user_uuid
+    end
   end
 
   describe 'referral_url' do
@@ -13,9 +31,9 @@ RSpec.describe User, type: :model do
   end
 
   describe '#validations' do
-    xit 'does not save a user if one already exists with the same uuid' do
-      User.create!(uuid: '1')
-      User.create!(uuid: '1')
+    it 'does not save a user if one already exists with the same uuid' do
+      User.create!(user_uuid: '1')
+      User.create!(user_uuid: '1')
       expect(User.all.count).to be 1
     end
   end
