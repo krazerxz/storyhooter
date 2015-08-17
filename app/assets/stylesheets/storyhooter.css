@@ -25,6 +25,7 @@ div #story-so-far, #story-evolution{
   overflow: scroll;
   height: 200px;
   border-radius: 5px;
+  margin-top: 10px;
 }
 footer {
   text-align: center;

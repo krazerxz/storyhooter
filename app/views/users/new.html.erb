@@ -2,7 +2,7 @@
 <div class="container" id="content">
   <div class="col-md-12">
     <div class="previous">
-      <div id="referred-from">You heard from <%=@user_display.parent_name%></div>
+      <div id="referred-from">You are the <%= @user_display.total_users.ordinalize %> user to contribute, you heard from <%=@user_display.parent_name%>. See how the story has evolved so far, then add to it!</div>
 
       <div id="story-so-far">
         <%@user_display.story.each do |element|%>
@@ -16,12 +16,12 @@
 
     <div class="col-md-12">
       <p>
-        <%= field.text_field(:tale, required: true) %>
+        <%= field.text_field(:tale, required: true, label: 'What happens next?', placeholder: 'This will be your contribution to the story') %>
       </p>
     </div>
 
     <div class="col-md-6">
-      <p> <%= field.text_field(:name, required: true) %> </p>
+      <p> <%= field.text_field(:name, required: true, placeholder: 'Who are you?') %> </p>
     </div>
     <div class="col-md-6">
       <p> <%= field.collection_select :country_id, Country.all,:id,:name %> </p>
