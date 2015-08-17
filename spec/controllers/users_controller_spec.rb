@@ -26,12 +26,16 @@ describe UsersController, type: :controller do
       get :new, referred_from: 'a_hex_code'
     end
 
-    it 'throws an error if an invalid user is entered' do
-      get :new, referred_from: 'an_invalid_hex'
-    end
+    context 'invalid users' do
+      it 'throws an error if an invalid user is entered' do
+        allow(User).to receive(:find_by).with(user_uuid: 'user_does_not_exist').and_return nil
+        expect { get :new, referred_from: 'user_does_not_exist' }.to raise_error UserException, 'The referrer you entered does not exist'
+      end
 
-    it 'throws an error if no user is entered' do
-      get :new
+      it 'throws an error if no user is entered' do
+        allow(User).to receive(:find_by).with(user_uuid: nil).and_return nil
+        expect { get :new }.to raise_error UserException, 'The referrer you entered does not exist'
+      end
     end
   end
 
@@ -99,12 +103,11 @@ describe UsersController, type: :controller do
       get :show, user_uuid: 'uuid'
     end
 
-    it 'throws an error if an invalid user is entered' do
-      get :new, user_uuid: 'an_invalid_hex'
-    end
-
-    it 'throws an error if no user is entered' do
-      get :new
+    context 'invalid users' do
+      it 'throws an error if an invalid user is entered' do
+        allow(User).to receive(:find_by).with(user_uuid: 'user_does_not_exist').and_return nil
+        expect { get :show, user_uuid: 'user_does_not_exist' }.to raise_error UserException, 'The user you entered does not exist'
+      end
     end
   end
 end
