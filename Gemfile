@@ -2,11 +2,13 @@ source 'https://rubygems.org'
 
 gem 'bootstrap_form'
 gem 'coffee-rails'
+gem 'exception_handler'
 gem 'hashie'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'neo4j'
 gem 'rails'
+gem 'responders'
 gem 'sass-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'therubyracer'
