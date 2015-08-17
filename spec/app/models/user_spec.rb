@@ -31,10 +31,10 @@ RSpec.describe User, type: :model do
   end
 
   describe '#validations' do
-    it 'does not save a user if one already exists with the same uuid' do
-      User.create!(user_uuid: '1')
-      User.create!(user_uuid: '1')
-      expect(User.all.count).to be 1
+    let(:user_1) { User.create! }
+
+    it 'assigns a random uuid on saving' do
+      expect(user_1.user_uuid).to_not be nil
     end
   end
 
