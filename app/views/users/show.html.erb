@@ -4,10 +4,26 @@
       <p><%=@user.name%>, this is where your story begins. You are the <%=@user.id%> person to contribute. Bookmark this page so you don't loose it.</p>
     </div>
 
-    <div id="story-so-far">
-      <%@user_display.story.each do |element|%>
-        <p><%=element%></p>
+    <ul class="timeline">
+
+      <% direction = %w(r l) %>
+      <% @user_display.story.each do |element| %>
+        <li>
+          <div class="direction-<%=direction.first%>">
+            <div class="flag-wrapper">
+              <span class="flag">Name</span>
+              <span class="time-wrapper"><span class="time">country</span></span>
+            </div>
+            <div class="desc"><%=element%></div>
+          </div>
+        </li>
+        <% direction.push(direction.shift) %>
       <% end %>
+
+
+    </ul>
+
+    <div id="story-so-far">
     </div>
 
 
