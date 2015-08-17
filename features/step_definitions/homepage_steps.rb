@@ -19,5 +19,7 @@ Then 'I should see the homepage' do
   expect(find('#users').text).to match(/3/)
 
   # Example Story
-  expect(find('#example-story').text).to match(/beginning middle end/)
+  expect(find('#story-so-far').text).to match(/beginning/)
+  expect(find('#story-so-far').text).to match(/middle/)
+  expect(find('#story-so-far').text).to match(/end/)
 end
