@@ -1,4 +1,4 @@
 module ExceptionHandler
-	class Error
-	end
+  class Error
+  end
 end

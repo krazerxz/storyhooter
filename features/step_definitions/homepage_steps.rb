@@ -15,11 +15,8 @@ When 'I visit the homepage' do
 end
 
 Then 'I should see the homepage' do
-  # Total users
-  expect(find('#users').text).to match(/3/)
-
   # Example Story
-  expect(find('#story-so-far').text).to match(/beginning/)
-  expect(find('#story-so-far').text).to match(/middle/)
-  expect(find('#story-so-far').text).to match(/end/)
+  expect(find('#story-window').text).to match(/beginning/)
+  expect(find('#story-window').text).to match(/middle/)
+  expect(find('#story-window').text).to match(/end/)
 end
