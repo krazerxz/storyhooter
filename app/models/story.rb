@@ -3,10 +3,10 @@ class Story
     current_user = User.find_by(user_uuid: user_uuid)
     story = []
     until current_user.parent.nil?
-      story << current_user.tale
+      story << build_hash_from(current_user)
       current_user = current_user.parent
     end
-    story << current_user.tale
+    story << build_hash_from(current_user)
     story.reverse
   end
 
@@ -19,6 +19,14 @@ class Story
       story << current_user.tale
     end
     story
+  end
+
+  def self.build_hash_from(user)
+    h = {}
+    h[:tale] = user.tale
+    h[:name] = user.name
+    h[:country] = user.country_id
+    h
   end
 
   def self.children_for(user)

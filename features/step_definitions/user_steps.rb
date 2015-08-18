@@ -46,13 +46,13 @@ end
 
 Then 'I see the user show page' do
   user_uuid = User.find_by(name: 'username').user_uuid
-  expect(find('#story-so-far').text).to match(/Once upon a time/)
-  expect(find('#story-so-far').text).to match(/The End/)
+  expect(find('#story-window').text).to match(/Once upon a time/)
+  expect(find('#story-window').text).to match(/The End/)
   expect(find('#referral-url')[:href]).to match(%r{/user/new\?referred_from=#{user_uuid}})
 end
 
 Then 'I should see the future of the story' do
-  expect(find('#story-so-far').text).to match(/Part 1/)
-  expect(find('#story-so-far').text).to match(/Part 2/)
+  expect(find('#story-window').text).to match(/Part 1/)
+  expect(find('#story-window').text).to match(/Part 2/)
   expect(find('#story-evolution').text).to match(/Part 3/)
 end
