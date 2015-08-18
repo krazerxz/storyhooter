@@ -16,7 +16,7 @@ class Story
     story = []
     until children_for(current_user).count.zero?
       current_user = children_for(current_user).sample
-      story << current_user.tale
+      story << build_hash_from(current_user)
     end
     story
   end

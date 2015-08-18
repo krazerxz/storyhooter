@@ -27,12 +27,12 @@ div #story-window{
   overflow: auto;
 }
 div #story-so-far, #story-evolution{
-  text-align: center;
-  border: solid #01BFBA 1px;
-  overflow: scroll;
-  height: 200px;
-  border-radius: 5px;
-  margin-top: 10px;
+  /*text-align: center;*/
+  /*border: solid #01BFBA 1px;*/
+  /*overflow: scroll;*/
+  /*height: 200px;*/
+  /*border-radius: 5px;*/
+  /*margin-top: 10px;*/
 }
 footer {
   text-align: center;
