@@ -8,9 +8,9 @@ class Country
     as_mash countries_as_hash
   end
 
-  def self.for id
+  def self.for(id)
     countries = YAML.load_file("#{File.dirname(__FILE__)}/../../config/countries.yml")['countries']
-    countries[id.to_i]
+    countries[id]
   end
 
   def self.as_mash(array)
