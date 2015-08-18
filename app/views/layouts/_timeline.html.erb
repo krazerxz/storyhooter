@@ -1,17 +1,7 @@
-<div id="story-window">
-  <ul class="timeline">
-    <% direction = %w(r l) %>
-    <% @user_display.story.each do |element| %>
-      <li>
-        <div class="direction-<%=direction.first%>">
-          <div class="flag-wrapper">
-            <span class="flag"><%=element[:name]%></span>
-            <span class="time-wrapper"><span class="time"><%=element[:country]%></span></span>
-          </div>
-          <div class="desc"><%=element[:tale]%></div>
-        </div>
-      </li>
-      <% direction.push(direction.shift) %>
-    <% end %>
-  </ul>
+<div id="story-so-far">
+  <% @user_display.story.each do |element| %>
+    <span><%=element[:name]%></span>
+    <span><%=element[:country]%></span>
+    <div><%=element[:tale]%></div>
+  <% end %>
 </div>
