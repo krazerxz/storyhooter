@@ -1,7 +1,8 @@
 <div class="container" id="content">
   <div>
     <div class="previous">
-      <p><%=@user.name%>, this is where your story begins. You are the <%=@user_display.total_users.ordinalize%> person to contribute. Bookmark this page so you don't loose it.</p>
+      <h1><%=@user.name%>'s Story</h1>
+      <p>This is where your story begins. You are the <%=@user_display.total_users.ordinalize%> person to contribute. Bookmark this page so you don't loose it.</p>
     </div>
 
     <%= render 'layouts/fancy_timeline_past' %>
@@ -9,13 +10,15 @@
     <%= render 'layouts/fancy_timeline_future' %>
 
     <div class="shares">
-      <p>To continue your unique story, share <a id="referral-url" href="<%=@user.referral_url%>">this link</a> and watch your story unfold. </p>
-      <div class="fb-share-button" data-href="<%=@user.referral_url%>" data-layout="button"></div>
-      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://wordofmouth.com/<%=@user.referral_url%>" data-count="none" data-dnt="true">Tweet</a>
+      <p>To continue your unique story, share <a id="referral-url" href="<%=@user.referral_url%>">this link</a> and watch your story unfold.</p>
+      <div class="fb-share-button" data-href="http://storyhooter.com<%=@user.referral_url%>" data-layout="button"></div>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://storyhooter.com<%=@user.referral_url%>" data-count="none" data-dnt="true">Tweet</a>
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
     </div>
 
-    <p>See how your story has evolved</p>
+    <div class="shares">
+    <p>Come back to this page later to see how your story has evolved.</p>
+  </div>
 
   </div>
 </div>

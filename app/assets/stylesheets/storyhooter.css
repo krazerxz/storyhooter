@@ -1,6 +1,12 @@
 body{
   background: #f4faf6;
 }
+h1{
+  font-family:"Droid Serif","Helvetica Neue",Helvetica,Arial;
+  font-size:38px;
+  line-height:22px;
+  margin-bottom:25px;
+}
 header{
   background-image: url("/assets/header-bg.jpg");
   background-repeat:none;
