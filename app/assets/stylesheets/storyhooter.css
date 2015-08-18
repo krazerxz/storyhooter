@@ -23,7 +23,7 @@ div .previous, .shares {
   padding-top: 20px;
 }
 div #story-window{
-  height: 640px;
+  max-height: 640px;
   overflow: auto;
 }
 div #story-so-far, #story-evolution{

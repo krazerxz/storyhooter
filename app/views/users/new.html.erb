@@ -2,13 +2,9 @@
 <div class="container" id="content">
   <div class="col-md-12">
     <div class="previous">
-      <div id="referred-from">You are the <%= @user_display.total_users.ordinalize %> user to contribute, you heard from <%=@user_display.parent_name%>. See how the story has evolved so far, then add to it!</div>
+      <%= render 'layouts/timeline' %>
 
-      <div id="story-so-far">
-        <%@user_display.story.each do |element|%>
-          <p><%=element%></p>
-        <% end %>
-      </div>
+      <div id="referred-from">You are the <%= @user_display.total_users.ordinalize %> user to contribute, you heard from <%=@user_display.parent_name%>. See how the story has evolved so far, then add to it!</div>
     </div>
   </div>
 

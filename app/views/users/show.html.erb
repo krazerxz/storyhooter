@@ -1,7 +1,7 @@
 <div class="container" id="content">
   <div>
     <div class="previous">
-      <p><%=@user.name%>, this is where your story begins. You are the <%=@user.id%> person to contribute. Bookmark this page so you don't loose it.</p>
+      <p><%=@user.name%>, this is where your story begins. You are the <%=@user_display.total_users.ordinalize%> person to contribute. Bookmark this page so you don't loose it.</p>
     </div>
 
     <%= render 'layouts/timeline' %>
