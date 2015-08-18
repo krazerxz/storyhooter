@@ -1,3 +1,6 @@
+body{
+  background: #f4faf6;
+}
 header{
   background-image: url("/assets/header-bg.jpg");
   background-repeat:none;
@@ -18,6 +21,10 @@ header .intro-text .intro-lead-in{font-family:"Droid Serif","Helvetica Neue",Hel
 }
 div .previous, .shares {
   padding-top: 20px;
+}
+div #story-window{
+  max-height: 640px;
+  overflow: auto;
 }
 div #story-so-far, #story-evolution{
   text-align: center;

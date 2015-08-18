@@ -34,25 +34,25 @@ end
 
 Then 'I should see the new user page' do
   expect(find('#referred-from').text).to match(/primary_user/)
-  expect(find('#story-so-far').text).to match(/Once upon a time/)
+  expect(find('#story-window').text).to match(/Once upon a time/)
 end
 
 When 'I fill in details for the new user' do
   fill_in('user_name', with: 'username')
-  select('United Kingdom', from: 'user_country_id')
+  select('UK', from: 'user_country_id')
   fill_in('user_tale', with: 'The End')
   find('input[name="commit"]').click
 end
 
 Then 'I see the user show page' do
   user_uuid = User.find_by(name: 'username').user_uuid
-  expect(find('#story-so-far').text).to match(/Once upon a time/)
-  expect(find('#story-so-far').text).to match(/The End/)
+  expect(find('#story-window').text).to match(/Once upon a time/)
+  expect(find('#story-window').text).to match(/The End/)
   expect(find('#referral-url')[:href]).to match(%r{/user/new\?referred_from=#{user_uuid}})
 end
 
 Then 'I should see the future of the story' do
-  expect(find('#story-so-far').text).to match(/Part 1/)
-  expect(find('#story-so-far').text).to match(/Part 2/)
+  expect(find('#story-window').text).to match(/Part 1/)
+  expect(find('#story-window').text).to match(/Part 2/)
   expect(find('#story-evolution').text).to match(/Part 3/)
 end

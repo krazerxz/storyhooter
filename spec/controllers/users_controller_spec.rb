@@ -46,14 +46,15 @@ describe UsersController, type: :controller do
 
     before do
       allow(User).to receive(:find_by).with(user_uuid: 'parent_uuid').and_return(parent_user)
-      allow(User).to receive(:create).and_return(new_user)
+      allow(UserPersister).to receive(:create_from).and_return(new_user)
+      allow(Country).to receive(:for).with('1').and_return('UK')
       allow(new_user).to receive(:save)
       allow(new_user).to receive(:add_parent)
       allow(parent_user).to receive(:add_child)
     end
 
     it 'creates the new user with details from the new user form' do
-      expect(User).to receive(:create).with(name: 'user', country_id: '1', tale: 'story')
+      expect(UserPersister).to receive(:create_from).with(name: 'user', country_id: '1', tale: 'story')
       post :create, user: user_details
     end
 

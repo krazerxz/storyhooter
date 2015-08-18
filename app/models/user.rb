@@ -20,7 +20,7 @@ class User
   end
 
   property :name
-  property :country_id
+  property :country
   property :user_uuid
   property :tale
 

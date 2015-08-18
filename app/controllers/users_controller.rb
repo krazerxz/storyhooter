@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def create
     user_hash = user_params
     parent_uuid = user_hash.delete(:parent_uuid)
-    @user = User.create(user_hash)
+    @user = UserPersister.create_from user_hash
 
     parent = User.find_by(user_uuid: parent_uuid)
     @user.add_parent parent

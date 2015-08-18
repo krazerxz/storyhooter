@@ -1,0 +1,7 @@
+<div id="story-so-far">
+  <% @user_display.story.each do |element| %>
+    <span><%=element[:name]%></span>
+    <span><%=element[:country]%></span>
+    <div><%=element[:tale]%></div>
+  <% end %>
+</div>
