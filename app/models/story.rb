@@ -25,7 +25,7 @@ class Story
     h = {}
     h[:tale] = user.tale
     h[:name] = user.name
-    h[:country] = user.country_id
+    h[:country] = user.country
     h
   end
 

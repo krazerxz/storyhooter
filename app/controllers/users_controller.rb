@@ -12,6 +12,8 @@ class UsersController < ApplicationController
   def create
     user_hash = user_params
     parent_uuid = user_hash.delete(:parent_uuid)
+    country_id = user_hash.delete(:country_id)
+    user_hash[:country] = Country.for country_id
     @user = User.create(user_hash)
 
     parent = User.find_by(user_uuid: parent_uuid)

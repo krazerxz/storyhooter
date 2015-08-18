@@ -34,12 +34,12 @@ end
 
 Then 'I should see the new user page' do
   expect(find('#referred-from').text).to match(/primary_user/)
-  expect(find('#story-so-far').text).to match(/Once upon a time/)
+  expect(find('#story-window').text).to match(/Once upon a time/)
 end
 
 When 'I fill in details for the new user' do
   fill_in('user_name', with: 'username')
-  select('United Kingdom', from: 'user_country_id')
+  select('UK', from: 'user_country_id')
   fill_in('user_tale', with: 'The End')
   find('input[name="commit"]').click
 end
