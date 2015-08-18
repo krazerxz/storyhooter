@@ -33,6 +33,8 @@ div #story-window{
   overflow: auto;
 }
 div #story-so-far, #story-evolution{
+  max-height: 640px;
+  overflow: auto;
   /*text-align: center;*/
   /*border: solid #01BFBA 1px;*/
   /*overflow: scroll;*/
