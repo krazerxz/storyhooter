@@ -12,10 +12,10 @@ class Story
 
   def self.build_down_from(user_uuid:)
     current_user = User.find_by(user_uuid: user_uuid)
-    return [] if children_for(current_user).count.zero?
+    return [] if current_user.children.count.zero?
     story = []
-    until children_for(current_user).count.zero?
-      current_user = children_for(current_user).sample
+    until current_user.children.count.zero?
+      current_user = current_user.children.result.sample
       story << build_hash_from(current_user)
     end
     story
@@ -29,10 +29,5 @@ class Story
     h
   end
 
-  def self.children_for(user)
-    user.children.execute
-    user.children
-  end
-
-  private_class_method :children_for
+  private_class_method :build_hash_from
 end

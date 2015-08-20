@@ -24,8 +24,8 @@ class User
   property :user_uuid
   property :tale
 
-  has_one :out, :parent, rel_class: Parent,  model_class: User
-  has_many :out, :children, rel_class: Child,  model_class: User
+  has_one :out, :parent, rel_class: Parent, model_class: User
+  has_many :out, :children, rel_class: Child, model_class: User
 
   def add_child(user)
     children << user

@@ -45,7 +45,7 @@ describe Story do
       ending_1 = [{ 'tale': 'End', 'name': 'c', 'country': 3 }]
       ending_2 = [{ 'tale': 'Alternate-End', 'name': 'd', 'country': 4 },
                   { 'tale': 'Longer', 'name': 'e', 'country': 5 }]
-      expect(true).to eq(story == ending_1 || story == ending_2)  # Going to regret this
+      expect(true).to eq(story == ending_1 || story == ending_2) # Going to regret this
     end
   end
 end
