@@ -3,6 +3,7 @@ AllCops:
   Exclude:
    - 'bin/*'
    - 'app/controllers/exception_handler/exception_controller.rb'
+   - 'script/benchmark'
 
 Metrics/LineLength:
   Max: 150
