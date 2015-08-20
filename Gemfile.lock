@@ -78,6 +78,9 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     exception_handler (0.3.45)
+    exception_notification (4.1.1)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
     execjs (2.6.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
@@ -255,6 +258,7 @@ DEPENDENCIES
   coffee-rails
   cucumber-rails
   exception_handler
+  exception_notification
   hashie
   jbuilder
   jquery-rails
