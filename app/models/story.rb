@@ -1,13 +1,8 @@
 class Story
   def self.build_to_top_from(user_uuid:)
     current_user = User.find_by(user_uuid: user_uuid)
-    story = []
-    until current_user.parent.nil?
-      story << build_hash_from(current_user)
-      current_user = current_user.parent
-    end
-    story << build_hash_from(current_user)
-    story.reverse
+    parent_chain = current_user.parent(rel_length: { min: 0 })
+    parent_chain.map { |user| build_hash_from(user) }.reverse
   end
 
   def self.build_down_from(user_uuid:)
