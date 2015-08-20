@@ -1,9 +1,8 @@
 class HomeController < ApplicationController
   def index
-    @users = User.all
-    user = User.first
-    story_so_far = Story.build_to_top_from(user_uuid: user.user_uuid)
-    @user_display = UserDisplay.new(story: story_so_far)
+    user = User.order(:created_at).limit(1).first
+    example_story = Story.build_down_from(user_uuid: user.user_uuid)
+    @user_display = UserDisplay.new(story: example_story)
     render 'index'
   end
 end

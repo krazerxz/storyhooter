@@ -16,7 +16,6 @@ end
 
 Then 'I should see the homepage' do
   # Example Story
-  expect(find('#story-window').text).to match(/beginning/)
   expect(find('#story-window').text).to match(/middle/)
   expect(find('#story-window').text).to match(/end/)
 end
