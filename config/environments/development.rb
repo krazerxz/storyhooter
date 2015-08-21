@@ -8,7 +8,7 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
   config.action_controller.perform_caching = false
   config.action_mailer.delivery_method = :sendmail
-  config.action_mailer.perform_deliveries = true
+  config.action_mailer.perform_deliveries = false
   config.action_mailer.raise_delivery_errors = true
 end
 Rails.application.config.middleware.use ExceptionNotification::Rack,
