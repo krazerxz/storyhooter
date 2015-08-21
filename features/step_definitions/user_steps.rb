@@ -41,11 +41,13 @@ When 'I fill in details for the new user' do
   fill_in('user_name', with: 'username')
   select('UK', from: 'user_country_id')
   fill_in('user_tale', with: 'The End')
+  fill_in('user_email', with: 'myemail@example.com')
   find('input[name="commit"]').click
 end
 
 Then 'I see the user show page' do
   user_uuid = User.find_by(name: 'username').user_uuid
+  expect(find('.alert').text).to match(/emailed this link to myemail@example.com/)
   expect(find('#story-window').text).to match(/Once upon a time/)
   expect(find('#story-window').text).to match(/The End/)
   expect(find('#referral-url')[:href]).to match(%r{/user/new\?referred_from=#{user_uuid}})

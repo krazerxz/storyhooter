@@ -40,7 +40,7 @@ describe UsersController, type: :controller do
   end
 
   describe 'Post /users/create' do
-    let(:user_details) { { name: 'user', country_id: '1', tale: 'story', parent_uuid: 'parent_uuid' } }
+    let(:user_details) { { name: 'user', country_id: '1', tale: 'story', parent_uuid: 'parent_uuid', email: 'email@example.com' } }
     let(:parent_user)  { double(:parent_user) }
     let(:new_user)     { double(:new_user, user_uuid: '') }
 
@@ -54,7 +54,7 @@ describe UsersController, type: :controller do
     end
 
     it 'creates the new user with details from the new user form' do
-      expect(UserPersister).to receive(:create_from).with(name: 'user', country_id: '1', tale: 'story')
+      expect(UserPersister).to receive(:create_from).with(name: 'user', country_id: '1', tale: 'story', email: 'email@example.com')
       post :create, user: user_details
     end
 

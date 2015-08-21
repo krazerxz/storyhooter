@@ -13,21 +13,26 @@
 
     <div class="col-md-12">
       <p>
-        <%= field.text_field(:tale, required: true, label: 'What happens next?', placeholder: 'This will be your contribution to the story') %>
+        <%= field.text_field(:tale, required: true, label: 'What happens next? *', placeholder: 'This will be your contribution to the story') %>
       </p>
     </div>
 
     <div class="col-md-6">
-      <p> <%= field.text_field(:name, required: true, placeholder: 'Who are you?') %> </p>
+      <p> <%= field.text_field(:name, required: true, label: 'Name *', placeholder: 'Who are you?') %> </p>
     </div>
     <div class="col-md-6">
       <p> <%= field.collection_select :country_id, Country.all,:id,:name %> </p>
     </div>
 
     <%= field.hidden_field 'parent_uuid', :value => @user_display.parent_uuid %>
-    <div class="col-md-12">
-      <%= field.submit 'save' %>
-    </div>
+
+      <div class="col-md-6">
+        <p> <%= field.text_field(:email, label: 'Email address', placeholder: 'We\'ll email your profile link so you don\'t have to remember it :)' ) %> </p>
+      </div>
+
+      <div class="col-md-6">
+        <%= field.submit 'save' %>
+      </div>
   <% end %>
 
 </div>

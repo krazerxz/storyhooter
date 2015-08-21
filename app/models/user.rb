@@ -19,10 +19,11 @@ class User
     type 'child'
   end
 
-  property :name
   property :country
-  property :user_uuid
+  property :email
+  property :name
   property :tale
+  property :user_uuid
 
   has_one :out, :parent, rel_class: Parent, model_class: User
   has_many :out, :children, rel_class: Child, model_class: User

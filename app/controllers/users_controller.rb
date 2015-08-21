@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
   # for create
   def user_params
-    params.require(:user).permit(:name, :country_id, :tale, :parent_uuid)
+    params.require(:user).permit(:name, :country_id, :tale, :parent_uuid, :email)
   end
 
   # for show

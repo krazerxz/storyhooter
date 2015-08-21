@@ -3,6 +3,14 @@
 <div class="container" id="content">
   <div>
     <div class="previous">
+
+      <% unless @user.email.nil?%>
+        <div class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          We've emailed this link to <%=@user.email%> in case you forget it :)
+        </div>
+      <% end %>
+
       <h1><%=@user.name%>'s Story</h1>
       <p>This is where your story begins. You are the <%=@user_display.total_users.ordinalize%> person to contribute. Bookmark this page so you don't lose it.</p>
     </div>
