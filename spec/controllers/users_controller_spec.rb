@@ -48,7 +48,7 @@ describe UsersController, type: :controller do
       allow(User).to receive(:find_by).with(user_uuid: 'parent_uuid').and_return(parent_user)
       allow(UserPersister).to receive(:create_from).and_return(new_user)
       allow(Country).to receive(:for).with('1').and_return('UK')
-      allow(Emailer).to receive(:email_profile_to)
+      allow(NewUserMailer).to receive_message_chain(:new_user_email, :deliver_now)
       allow(new_user).to receive(:save)
       allow(new_user).to receive(:add_parent)
       allow(parent_user).to receive(:add_child)
@@ -60,13 +60,13 @@ describe UsersController, type: :controller do
     end
 
     it 'emails the user if an email address has been provided' do
-      expect(Emailer).to receive(:email_profile_to).with(new_user)
+      expect(NewUserMailer).to receive(:new_user_email).with(new_user)
       post :create, user: user_details
     end
 
     it 'does not try to email if no email address provided' do
-      user_with_no_email = { name: 'user', country_id: '1', tale: 'story', parent_uuid: 'parent_uuid' }
-      expect(Emailer).not_to receive(:email_profile_to)
+      user_with_no_email = { name: 'user', country_id: '1', tale: 'story', parent_uuid: 'parent_uuid', email: '' }
+      expect(NewUserMailer).not_to receive(:new_user_email)
       post :create, user: user_with_no_email
     end
 

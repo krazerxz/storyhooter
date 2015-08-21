@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     parent_uuid = user_hash.delete(:parent_uuid)
     @user = UserPersister.create_from user_hash
 
-    Emailer.email_profile_to(@user) unless user_hash[:email].nil?
+    NewUserMailer.new_user_email(@user).deliver_now unless user_hash[:email].empty?
 
     parent = User.find_by(user_uuid: parent_uuid)
     @user.add_parent parent
