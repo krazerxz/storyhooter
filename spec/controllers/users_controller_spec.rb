@@ -48,6 +48,7 @@ describe UsersController, type: :controller do
       allow(User).to receive(:find_by).with(user_uuid: 'parent_uuid').and_return(parent_user)
       allow(UserPersister).to receive(:create_from).and_return(new_user)
       allow(Country).to receive(:for).with('1').and_return('UK')
+      allow(Emailer).to receive(:email_profile_to)
       allow(new_user).to receive(:save)
       allow(new_user).to receive(:add_parent)
       allow(parent_user).to receive(:add_child)
@@ -56,6 +57,17 @@ describe UsersController, type: :controller do
     it 'creates the new user with details from the new user form' do
       expect(UserPersister).to receive(:create_from).with(name: 'user', country_id: '1', tale: 'story', email: 'email@example.com')
       post :create, user: user_details
+    end
+
+    it 'emails the user if an email address has been provided' do
+      expect(Emailer).to receive(:email_profile_to).with('email@example.com')
+      post :create, user: user_details
+    end
+
+    it 'does not try to email if no email address provided' do
+      user_with_no_email = { name: 'user', country_id: '1', tale: 'story', parent_uuid: 'parent_uuid', email: 'email@example.com' }
+      expect(Emailer).not_to receive(:email_profile_to)
+      post :create, user: user_with_no_email
     end
 
     it 'finds the parent user' do
