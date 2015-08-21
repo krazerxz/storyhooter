@@ -1,2 +1,4 @@
-Hi <%= @user.name %>
-Sample mail sent using smtp.
+<%= @user.name %>, this is just a quick email so you don't have to remember your profile and referral links.
+
+This is your profile link, keep checking this to see how your story evolves: <%=URI.join(root_url, @user.profile_url)%>
+This is your referral link. Share this one! this is how people continue your story!: <%=URI.join(root_url, @user.referral_url)%>

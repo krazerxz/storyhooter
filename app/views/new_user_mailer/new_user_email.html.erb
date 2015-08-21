@@ -2,11 +2,54 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style>
+      @import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic);
+
+      body{
+        background: #f4faf6;
+      }
+      h1{
+        font-family:"Droid Serif","Helvetica Neue",Helvetica,Arial;
+        font-size:38px;
+        line-height:22px;
+        margin-bottom:25px;
+      }
+      .intro-text a { color: inherit; text-decoration: none;}
+      header{
+        background-image: url("/assets/header-bg.jpg");
+        background-repeat:none;
+        background-attachment:scroll;
+        background-position:center center;
+        -webkit-background-size:cover;
+        -moz-background-size:cover;
+        background-size:cover;
+        -o-background-size:cover;
+        text-align:center;
+        color:#fff}
+      header .intro-text{padding-top:70px;padding-bottom:50px}
+      header .intro-text .intro-lead-in{font-family:"Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;font-style:italic;font-size:22px;line-height:22px;margin-bottom:25px}
+    </style>
   </head>
+
   <body>
-    <h1>Hi <%= @user.name %></h1>
-    <p>
-      Sample mail sent using smtp.
-    </p>
+
+    <header>
+      <div class="intro-text">
+        <a href="<%=root_url%>"><div class="intro-lead-in">Story Hooter</div></a>
+      </div>
+    </header>
+
+    <div class="content">
+      <p>
+        <%= @user.name %>, this is just a quick email so you don't have to remember your profile and referral links.
+      </p>
+
+      <ul>
+        <li>This is your <bold>profile link</bold>, keep checking this to see how your story evolves: <a href="<%=URI.join(root_url, @user.profile_url)%>"><%=URI.join(root_url, @user.profile_url)%></a></li>
+        <li>This is your <bold>referral link</bold>. Share this one! this is how people continue your story!: <a href="<%=URI.join(root_url, @user.referral_url)%>"><%=URI.join(root_url, @user.referral_url)%></a></li>
+      </ul>
+
+    </div>
+
   </body>
 </html>
