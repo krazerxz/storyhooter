@@ -60,12 +60,12 @@ describe UsersController, type: :controller do
     end
 
     it 'emails the user if an email address has been provided' do
-      expect(Emailer).to receive(:email_profile_to).with('email@example.com')
+      expect(Emailer).to receive(:email_profile_to).with(new_user)
       post :create, user: user_details
     end
 
     it 'does not try to email if no email address provided' do
-      user_with_no_email = { name: 'user', country_id: '1', tale: 'story', parent_uuid: 'parent_uuid', email: 'email@example.com' }
+      user_with_no_email = { name: 'user', country_id: '1', tale: 'story', parent_uuid: 'parent_uuid' }
       expect(Emailer).not_to receive(:email_profile_to)
       post :create, user: user_with_no_email
     end
