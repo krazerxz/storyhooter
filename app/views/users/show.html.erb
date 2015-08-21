@@ -4,7 +4,7 @@
   <div>
     <div class="previous">
 
-      <% unless @user.email.nil?%>
+      <% unless @user.email.empty?%>
         <div class="alert alert-success alert-dismissible" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           We've emailed this link to <%=@user.email%> in case you forget it :)

@@ -3,6 +3,6 @@ class NewUserMailer < ApplicationMailer
 
   def new_user_email(user)
     @user = user
-    mail(to: @user.email, subject: 'Sample Email')
+    mail(to: @user.email, subject: "StoryHooter - #{@user.name}, your story begins here!")
   end
 end

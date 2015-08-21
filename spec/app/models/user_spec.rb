@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  describe 'validations ' do
+    let(:user_1) { User.create }
+
+    it 'sets the email address to an empty string if none is provided' do
+      expect(user_1.email).to eq ''
+    end
+  end
+
   describe 'add_child' do
     let(:user_1) { User.create }
     let(:user_2) { User.new }

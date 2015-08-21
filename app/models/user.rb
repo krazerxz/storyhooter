@@ -20,7 +20,7 @@ class User
   end
 
   property :country
-  property :email
+  property :email, default: ''
   property :name
   property :tale
   property :user_uuid
@@ -43,6 +43,7 @@ class User
   def profile_url
     "/user/#{user_uuid}"
   end
+
   def referral_url
     "/user/new?referred_from=#{user_uuid}"
   end
