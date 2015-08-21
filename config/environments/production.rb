@@ -9,10 +9,19 @@ Rails.application.configure do
   config.i18n.fallbacks = true
   config.log_formatter = ::Logger::Formatter.new
   config.action_controller.perform_caching = true
-  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { :host => "storyhooter.com" }
+  config.action_mailer.default_url_options = { host: 'storyhooter.com' }
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'gmail.com',
+    user_name: Rails.application.secrets['gmail_username'],
+    password: Rails.application.secrets['gmail_password'],
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
 end
 Rails.application.config.middleware.use ExceptionNotification::Rack,
                                         email: {
