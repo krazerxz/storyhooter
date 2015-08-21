@@ -22,6 +22,13 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe 'profile_url' do
+    it 'returns the users unique profile url' do
+      allow(SecureRandom).to receive(:hex).with(5).and_return('a_hex')
+      user = User.create!
+      expect(user.profile_url).to match(%r{/user/a_hex})
+    end
+  end
   describe 'referral_url' do
     it 'returns the users unique referral url' do
       allow(SecureRandom).to receive(:hex).with(5).and_return('a_hex')

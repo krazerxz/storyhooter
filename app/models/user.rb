@@ -40,6 +40,9 @@ class User
     self.user_uuid = SecureRandom.hex(5) if user_uuid.nil?
   end
 
+  def profile_url
+    "/user/#{user_uuid}"
+  end
   def referral_url
     "/user/new?referred_from=#{user_uuid}"
   end
