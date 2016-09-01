@@ -24,6 +24,6 @@ end
 Rails.application.config.middleware.use ExceptionNotification::Rack,
                                         email: {
                                           email_prefix: '[SH Exception] ',
-                                          sender_address: %("notifier" <exception.notifier@storyhooter.com>),
-                                          exception_recipients: %w(exceptions.storyhooter@gmail.com)
+                                          sender_address: %("notifier" <"#{Rails.application.secrets['exception_email_address']}">),
+                                          exception_recipients: ["#{Rails.application.secrets['exception_email_address']}"]
                                         }

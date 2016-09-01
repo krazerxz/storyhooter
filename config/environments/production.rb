@@ -12,7 +12,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { host: 'storyhooter.com' }
+  config.action_mailer.default_url_options = { host: Rails.application.secrets['fqdn'] }
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,
@@ -26,6 +26,6 @@ end
 Rails.application.config.middleware.use ExceptionNotification::Rack,
                                         email: {
                                           email_prefix: '[SH Exception] ',
-                                          sender_address: %("notifier" <exception.notifier@storyhooter.com>),
-                                          exception_recipients: %w(exceptions.storyhooter@gmail.com)
+                                          sender_address: %("notifier" <"#{Rails.application.secrets['exception_email_address']}">),
+                                          exception_recipients: ["#{Rails.application.secrets['exception_email_address']}"]
                                         }
