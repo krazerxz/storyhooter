@@ -4,6 +4,7 @@ class Story
     parent_chain.map {|user| build_hash_from(user) }.reverse
   end
 
+  # rubocop:disable MethodLength
   def self.build_down_from user_uuid:
     current_user = user user_uuid
     return [] if current_user.children.count.zero?
@@ -14,6 +15,7 @@ class Story
     end
     story
   end
+  # rubocop:enable MethodLength
 
   def self.build_hash_from user
     h = {}
