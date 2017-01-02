@@ -1,8 +1,0 @@
-test:
-  database_url: 'http://localhost:8000'
-
-development:
-  database_url: 'http://localhost:7000'
-
-production:
-  database_url: 'http://localhost:6000'
