@@ -11,6 +11,5 @@ Bundler.require(*Rails.groups)
 module StoryHooter
   class Application < Rails::Application
     config.generators { |g| g.orm :neo4j }
-    # Neo4j::Session.open
   end
 end

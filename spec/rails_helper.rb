@@ -13,13 +13,13 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   config.infer_spec_type_from_file_location!
+  DatabaseCleaner[:neo4j, connection: {type: :server_db, path: 'http://localhost:7474', basic_auth: {username: "neo4j", password: "password"} }].strategy = :deletion
 
-  config.before :each do
-    delete_neo4j_db
+  config.before(:each) do
+    DatabaseCleaner.start
   end
-end
 
-def delete_neo4j_db
-  # No longer works todo
-  # Neo4j::Session.current._query('MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r')
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end
