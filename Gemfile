@@ -10,18 +10,20 @@ gem 'jbuilder'
 gem 'jquery-rails'
 gem 'neo4j'
 gem 'puma'
-gem 'rails'
+gem 'rails', "~> 4.2"
 gem 'responders'
 gem 'sass-rails'
-gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
 gem 'uglifier'
+
+group :development do
+  gem 'web-console', '~> 2.0'
+end
 
 group :development, :test do
   gem 'byebug'
   gem 'cucumber-rails', require: false
   gem 'rspec-rails'
   gem 'rubocop'
-  gem 'web-console', '~> 2.0'
 end
