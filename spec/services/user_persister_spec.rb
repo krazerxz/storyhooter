@@ -1,18 +1,37 @@
 require "rails_helper"
 
 describe UserPersister do
-  describe "create_from" do
-    let(:user_hash) { {name: "user", country: "lala land", tale: "story"} }
+  let(:user_params)     { {name: "user", country_id: "1", tale: "story", parent_uuid: "parent_uuid", email: "email@example.com"} }
+  let(:user_attributes) { { user: user_params[:name], country: country, tale: user_params[:tale], email: user_params[:email] } }
 
-    it "resolves the country id to a country" do
-      expect(Country).to receive(:for).with(1)
-      UserPersister.create_from(name: "user", country_id: "1", tale: "story")
+  subject { described_class.new(user_params) }
+
+  describe "create" do
+    let(:user)    { double(:user) }
+    let(:parent)  { double(:parent) }
+    let(:country) { "lala land" }
+
+    before do
+      allow(User).to receive(:create).with(user_attributes).and_return user
+      allow(Country).to receive(:for).with(1).and_return country
+      allow(User).to receive(:find_by).with(user_uuid: user_params[:parent_uuid]).and_return parent
+      allow(user).to receive(:add_parent)
+      allow(parent).to receive(:add_child)
     end
 
-    it "saves a user" do
-      allow(Country).to receive(:for).with(1).and_return("lala land")
-      expect(User).to receive(:create).with(user_hash)
-      UserPersister.create_from(name: "user", country_id: "1", tale: "story")
+    it "creates the new user" do
+      expect(User).to receive(:create).with user_attributes
+      subject.create
+    end
+
+    it "adds the parent to the new user" do
+      expect(user).to receive(:add_parent).with parent
+      subject.create
+    end
+
+    it "adds the new user as a child to the parent" do
+      expect(parent).to receive(:add_child).with user
+      subject.create
     end
   end
 end
