@@ -34,3 +34,6 @@ bower.json
 # Ignore pow environment settings
 .powenv
 script/benchmark
+
+# Ignore application configuration
+/config/application.yml

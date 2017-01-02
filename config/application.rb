@@ -9,7 +9,8 @@ Bundler.require(*Rails.groups)
 
 module StoryHooter
   class Application < Rails::Application
-    neo4j_dbconfig = YAML.load(File.open("#{File.dirname(__FILE__)}/neo4j_database.yml"))[ENV['RAILS_ENV']]
-    Neo4j::Session.open(:server_db, neo4j_dbconfig['database_url'])
+    Figaro.load
+    options = { basic_auth: { username: Figaro.env.neo4j_username, password: Figaro.env.neo4j_password }}
+    Neo4j::Session.open(:server_db, Figaro.env.neo4j_url, options)
   end
 end

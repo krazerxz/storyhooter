@@ -4,6 +4,7 @@ gem 'bootstrap_form'
 gem 'coffee-rails'
 gem 'exception_handler'
 gem 'exception_notification'
+gem 'figaro'
 gem 'hashie'
 gem 'jbuilder'
 gem 'jquery-rails'
@@ -22,6 +23,5 @@ group :development, :test do
   gem 'cucumber-rails', require: false
   gem 'rspec-rails'
   gem 'rubocop'
-  gem 'spring'
   gem 'web-console', '~> 2.0'
 end
