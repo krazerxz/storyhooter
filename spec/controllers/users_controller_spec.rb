@@ -13,23 +13,23 @@ describe UsersController, type: :controller do
 
     it "finds the referring user" do
       expect(User).to receive(:find_by).with(user_uuid: "a_hex_code")
-      get :new, params: {referred_from: "a_hex_code"}
+      get :new, referred_from: "a_hex_code"
     end
 
     it "builds the story from the referring user" do
       expect(Story).to receive(:build_to_top_from).with(user_uuid: "a_hex_code")
-      get :new, params: {referred_from: "a_hex_code"}
+      get :new, referred_from: "a_hex_code"
     end
 
     it "creates a user display" do
       expect(UserDisplay).to receive(:new).with(parent: parent_user, story: story)
-      get :new, params: {referred_from: "a_hex_code"}
+      get :new, referred_from: "a_hex_code"
     end
 
     context "invalid users" do
       it "throws an error if an invalid user is entered" do
         allow(User).to receive(:find_by).with(user_uuid: "user_does_not_exist").and_return nil
-        expect { get :new, params: {referred_from: "user_does_not_exist"} }.to raise_error UserException, "The referrer you entered does not exist"
+        expect { get :new, referred_from: "user_does_not_exist" }.to raise_error UserException, "The referrer you entered does not exist"
       end
 
       it "throws an error if no user is entered" do
@@ -40,49 +40,32 @@ describe UsersController, type: :controller do
   end
 
   describe "Post /users/create" do
-    let(:user_details) { {name: "user", country_id: "1", tale: "story", parent_uuid: "parent_uuid", email: "email@example.com"} }
-    let(:parent_user)  { double(:parent_user) }
-    let(:new_user)     { double(:new_user, user_uuid: "") }
+    let(:user_details)   { {name: "user", country_id: "1", tale: "story", parent_uuid: "parent_uuid", email: "email@example.com"} }
+    let(:new_user)       { double(:new_user, user_uuid: 1, email: user_details[:email]) }
+    let(:user_mailer)    { double(:user_mailer).as_null_object }
+    let(:user_persister) { double(:user_persister) }
 
     before do
-      allow(User).to receive(:find_by).with(user_uuid: "parent_uuid").and_return(parent_user)
-      allow(UserPersister).to receive(:create_from).and_return(new_user)
-      allow(Country).to receive(:for).with("1").and_return("UK")
-      allow(NewUserMailer).to receive_message_chain(:new_user_email, :deliver_now)
-      allow(new_user).to receive(:save)
-      allow(new_user).to receive(:add_parent)
-      allow(parent_user).to receive(:add_child)
+      allow(UserPersister).to receive(:new).with(user_details).and_return user_persister
+      allow(user_persister).to receive(:create).and_return(new_user)
+      allow(new_user).to receive(:save).and_return true
+      allow(new_user).to receive :send_welcome_email
+      allow(NewUserMailer).to receive(:new_user_email).and_return user_mailer
     end
 
     it "creates the new user with details from the new user form" do
-      expect(UserPersister).to receive(:create_from).with(name: "user", country_id: "1", tale: "story", email: "email@example.com")
-      post :create, params: {user: user_details}
+      expect(user_persister).to receive(:create)
+      post :create, user: user_details
     end
 
-    it "emails the user if an email address has been provided" do
-      expect(NewUserMailer).to receive(:new_user_email).with(new_user)
-      post :create, params: {user: user_details}
+    it "sends an email to the new user" do
+      expect(new_user).to receive(:send_welcome_email)
+      post :create, user: user_details
     end
 
-    it "does not try to email if no email address provided" do
-      user_with_no_email = {name: "user", country_id: "1", tale: "story", parent_uuid: "parent_uuid", email: ""}
-      expect(NewUserMailer).not_to receive(:new_user_email)
-      post :create, params: {user: user_with_no_email}
-    end
-
-    it "finds the parent user" do
-      expect(User).to receive(:find_by).with(user_uuid: "parent_uuid")
-      post :create, params: {user: user_details}
-    end
-
-    it "adds the parent to the user" do
-      expect(new_user).to receive(:add_parent).with(parent_user)
-      post :create, params: {user: user_details}
-    end
-
-    it "adds the user as a child to the parent" do
-      expect(parent_user).to receive(:add_child).with(new_user)
-      post :create, params: {user: user_details}
+    it "redirects to the users page" do
+      post :create, user: user_details
+      expect(response).to redirect_to(user_url(user_uuid: 1))
     end
   end
 
@@ -98,28 +81,28 @@ describe UsersController, type: :controller do
 
     it "finds the user to show" do
       expect(User).to receive(:find_by).with(user_uuid: "uuid")
-      get :show, params: {user_uuid: "uuid"}
+      get :show, user_uuid: "uuid"
     end
 
     it "builds the story to the top" do
       expect(Story).to receive(:build_to_top_from).with(user_uuid: "uuid")
-      get :show, params: {user_uuid: "uuid"}
+      get :show, user_uuid: "uuid"
     end
 
     it "builds the story from the user" do
       expect(Story).to receive(:build_down_from).with(user_uuid: "uuid")
-      get :show, params: {user_uuid: "uuid"}
+      get :show, user_uuid: "uuid"
     end
 
     it "creates a user display" do
       expect(UserDisplay).to receive(:new).with(parent: parent_user, story: "story up", future_story: "story down")
-      get :show, params: {user_uuid: "uuid"}
+      get :show, user_uuid: "uuid"
     end
 
     context "invalid users" do
       it "throws an error if an invalid user is entered" do
         allow(User).to receive(:find_by).with(user_uuid: "user_does_not_exist").and_return nil
-        expect { get :show, params: {user_uuid: "user_does_not_exist"} }.to raise_error UserException, "The user you entered does not exist"
+        expect { get :show, user_uuid: "user_does_not_exist" }.to raise_error UserException, "The user you entered does not exist"
       end
     end
   end

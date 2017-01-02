@@ -14,7 +14,7 @@ RSpec.configure do |config|
 
   config.infer_spec_type_from_file_location!
   OPTIONS = {type: :server_db, path: "http://localhost:7474", basic_auth: {username: "neo4j", password: "password"}}.freeze
-  DatabaseCleaner[:neo4j, connection: options].strategy = :deletion
+  DatabaseCleaner[:neo4j, connection: OPTIONS].strategy = :deletion
 
   config.before(:each) do
     DatabaseCleaner.start

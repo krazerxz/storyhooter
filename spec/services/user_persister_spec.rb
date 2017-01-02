@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe UserPersister do
   let(:user_params)     { {name: "user", country_id: "1", tale: "story", parent_uuid: "parent_uuid", email: "email@example.com"} }
-  let(:user_attributes) { { user: user_params[:name], country: country, tale: user_params[:tale], email: user_params[:email] } }
+  let(:user_attributes) { {name: user_params[:name], country: country, tale: user_params[:tale], email: user_params[:email]} }
 
   subject { described_class.new(user_params) }
 
@@ -32,6 +32,10 @@ describe UserPersister do
     it "adds the new user as a child to the parent" do
       expect(parent).to receive(:add_child).with user
       subject.create
+    end
+
+    it "returns the user" do
+      expect(subject.create).to eq user
     end
   end
 end

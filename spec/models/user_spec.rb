@@ -1,6 +1,29 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
+  describe "send_welcome_email" do
+    let(:mailer) { double(:mailer) }
+
+    subject { described_class.new(email: "'email@example.com") }
+
+    before do
+      allow(NewUserMailer).to receive(:new_user_email).with(subject).and_return mailer
+    end
+
+    it "sends an email to the user" do
+      expect(mailer).to receive(:deliver_now)
+      subject.send_welcome_email
+    end
+
+    context "no email address" do
+      it "does not send an email" do
+        subject.email = ""
+        expect(mailer).not_to receive(:deliver_now)
+        subject.send_welcome_email
+      end
+    end
+  end
+
   describe "validations " do
     let(:user_1) { User.create }
 

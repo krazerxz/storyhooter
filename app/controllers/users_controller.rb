@@ -10,18 +10,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    user_hash = user_params
-    parent_uuid = user_hash.delete(:parent_uuid)
-    @user = UserPersister.create_from user_hash
-
-    NewUserMailer.new_user_email(@user).deliver_now unless user_hash[:email].empty?
-
-    parent = User.find_by(user_uuid: parent_uuid)
-    @user.add_parent parent
-    parent.add_child @user
-
-    redirect_to user_url(user_uuid: @user.user_uuid) if @user.save
-    render :new unless @user.save
+    @user = UserPersister.new(user_params).create
+    NewUserMailer.new_user_email(@user).deliver_now unless @user.email.empty? # WHY CANT I REMOVE THIS
+    @user.send_welcome_email
+    redirect_to user_url(user_uuid: @user.user_uuid)
   end
 
   # Get given id of newly created user

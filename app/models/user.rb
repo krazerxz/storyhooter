@@ -24,6 +24,10 @@ class User
     self.user_uuid = SecureRandom.hex(5) if user_uuid.nil?
   end
 
+  def send_welcome_email
+    NewUserMailer.new_user_email(self).deliver_now unless email.empty?
+  end
+
   def profile_url
     "/user/#{user_uuid}"
   end
