@@ -1,5 +1,6 @@
-DatabaseCleaner[:neo4j, connection: {type: :server_db, path: 'http://localhost:7474', basic_auth: {username: "neo4j", password: "password"} }].strategy = :deletion
+OPTIONS = {type: :server_db, path: "http://localhost:7474", basic_auth: {username: "neo4j", password: "password"}}.freeze
+DatabaseCleaner[:neo4j, connection: options].strategy = :deletion
 
-Around do |scenario, block|
+Around do |_scenario, block|
   DatabaseCleaner.cleaning(&block)
 end

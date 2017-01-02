@@ -3,5 +3,5 @@ class Parent
 
   from_class :User
   to_class :User
-  type 'parent'
+  type "parent"
 end
