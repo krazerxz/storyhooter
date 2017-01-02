@@ -4,13 +4,13 @@ require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'sprockets/railtie'
 require 'rails/test_unit/railtie'
+require 'neo4j/railtie'
 
 Bundler.require(*Rails.groups)
 
 module StoryHooter
   class Application < Rails::Application
-    Figaro.load
-    options = { basic_auth: { username: Figaro.env.neo4j_username, password: Figaro.env.neo4j_password }}
-    Neo4j::Session.open(:server_db, Figaro.env.neo4j_url, options)
+    config.generators { |g| g.orm :neo4j }
+    # Neo4j::Session.open
   end
 end
